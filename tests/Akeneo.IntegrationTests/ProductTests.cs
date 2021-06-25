@@ -7,8 +7,8 @@ using Akeneo.Model;
 using Akeneo.Search;
 using Xunit;
 using Category = Akeneo.Search.Category;
-using Family = Akeneo.Search.Family;
-using ProductValue = Akeneo.Search.ProductValue;
+using FamilyCriteria = Akeneo.Search.FamilyCriteria;
+using ProductValueCriteria = Akeneo.Search.ProductValueCriteria;
 
 namespace Akeneo.IntegrationTests
 {
@@ -37,11 +37,11 @@ namespace Akeneo.IntegrationTests
 		{
 			var result = await Client.SearchAsync<Product>(new List<Criteria>
 			{
-				ProductValue.Contains("sku", "tv"),
+				ProductValueCriteria.Contains("sku", "tv"),
 				Category.In("Default_Base_Pack_Template"),
-				Family.In("Default_Base_Pack_Template"),
-				Completeness.Equal(100, AkeneoDefaults.Channel),
-				Status.Enabled()
+				FamilyCriteria.In("Default_Base_Pack_Template"),
+				CompletenessCriteria.Equal(100, AkeneoDefaults.Channel),
+				StatusCriteria.Enabled()
 			});
 		}
 

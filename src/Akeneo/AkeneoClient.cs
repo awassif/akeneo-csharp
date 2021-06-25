@@ -17,6 +17,7 @@ using Akeneo.Model;
 using Akeneo.Model.Attributes;
 using Akeneo.Search;
 using Akeneo.Serialization;
+using NLog;
 
 namespace Akeneo
 {
@@ -24,7 +25,7 @@ namespace Akeneo
 	{
 		private readonly EndpointResolver _endpointResolver;
 		private readonly SearchQueryBuilder _searchBuilder;
-		private readonly ILog _logger = LogProvider.For<AkeneoClient>();
+		private readonly Logger _logger = LibLog.GetLogger<AkeneoClient>();
 
 		public AkeneoClient(AkeneoOptions options)
 			: this(options.ApiEndpoint, new AuthenticationClient(options.ApiEndpoint, options.ClientId, options.ClientSecret, options.UserName, options.Password)) { }

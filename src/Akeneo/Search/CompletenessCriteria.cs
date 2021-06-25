@@ -1,14 +1,14 @@
 ﻿namespace Akeneo.Search
 {
-	public class Completeness : Criteria
+	public class CompletenessCriteria : Criteria
 	{
 		public const string Key = "completeness";
 
 		public string Scope { get; set; }
 
-		public static Completeness Greater(int completness, string channel, bool allLocales = false)
+		public static CompletenessCriteria Greater(int completness, string channel, bool allLocales = false)
 		{
-			return new Completeness
+			return new CompletenessCriteria
 			{
 				Operator = allLocales
 					? Operators.GreaterOnAllLocales
@@ -18,9 +18,9 @@
 			};
 		}
 
-		public static Completeness GreaterOrEqual(int completness, string channel, bool allLocales = false)
+		public static CompletenessCriteria GreaterOrEqual(int completness, string channel, bool allLocales = false)
 		{
-			return new Completeness
+			return new CompletenessCriteria
 			{
 				Operator = allLocales
 					? Operators.GreaterOrEqualOnAllLocales
@@ -30,9 +30,9 @@
 			};
 		}
 
-		public static Completeness Lower(int completness, string channel, bool allLocales = false)
+		public static CompletenessCriteria Lower(int completness, string channel, bool allLocales = false)
 		{
-			return new Completeness
+			return new CompletenessCriteria
 			{
 				Operator = allLocales
 					? Operators.LowerOnAllLocales
@@ -42,9 +42,9 @@
 			};
 		}
 
-		public static Completeness LowerOrEqual(int completness, string channel, bool allLocales = false)
+		public static CompletenessCriteria LowerOrEqual(int completness, string channel, bool allLocales = false)
 		{
-			return new Completeness
+			return new CompletenessCriteria
 			{
 				Operator = allLocales
 					? Operators.LowerOrEqualOnAllLocales
@@ -54,9 +54,9 @@
 			};
 		}
 
-		public static Completeness Equal(int completness, string channel)
+		public static CompletenessCriteria Equal(int completness, string channel)
 		{
-			return new Completeness
+			return new CompletenessCriteria
 			{
 				Operator = Operators.Equal,
 				Value = completness,
@@ -64,9 +64,9 @@
 			};
 		}
 
-		public static Completeness NotEqual(int completness, string channel)
+		public static CompletenessCriteria NotEqual(int completness, string channel)
 		{
-			return new Completeness
+			return new CompletenessCriteria
 			{
 				Operator = Operators.NotEqual,
 				Value = completness,

@@ -50,12 +50,13 @@ namespace Akeneo.Search
 		{
 			criterias = criterias.ToList();
 			var result = new Dictionary<string, List<Criteria>>();
-			Add<Category>(result, criterias, Category.Key);
-			Add<Status>(result, criterias, Status.Key);
-			Add<Completeness>(result, criterias, Completeness.Key);
+			Add<CategoryCriteria>(result, criterias, CategoryCriteria.Key);
+			Add<EnabledCriteria>(result, criterias, EnabledCriteria.Key);
+			Add<StatusCriteria>(result, criterias, StatusCriteria.Key);
+			Add<CompletenessCriteria>(result, criterias, CompletenessCriteria.Key);
 			Add<GroupCriteria>(result, criterias, GroupCriteria.Key);
-			Add<Family>(result, criterias, Family.Key);
-			Add<Created>(result, criterias, Created.Key);
+			Add<FamilyCriteria>(result, criterias, FamilyCriteria.Key);
+			Add<CreatedCriteria>(result, criterias, CreatedCriteria.Key);
 			Add<UpdatedCriteria>(result, criterias, UpdatedCriteria.Key);
 			AddProductValueCriterias(result, criterias);
 
@@ -73,7 +74,7 @@ namespace Akeneo.Search
 
 		private static void AddProductValueCriterias(IDictionary<string, List<Criteria>> dictionary, IEnumerable<Criteria> all)
 		{
-			var productValues = all.OfType<ProductValue>();
+			var productValues = all.OfType<ProductValueCriteria>();
 			var attributeGroup = productValues.GroupBy(p => p.AttributeCode);
 			foreach (var attributeGrp in attributeGroup)
 			{

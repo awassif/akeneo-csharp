@@ -10,6 +10,7 @@ using Akeneo.Http;
 using Akeneo.Logging;
 using Akeneo.Serialization;
 using Newtonsoft.Json;
+using NLog;
 
 namespace Akeneo.Client
 {
@@ -18,7 +19,7 @@ namespace Akeneo.Client
 		protected readonly IAuthenticationClient AuthClient;
 		protected readonly HttpClient HttpClient;
 		private const string BearerAuthHeader = "Bearer";
-		private readonly ILog _logger = LogProvider.For<AkenioClientBase>();
+		private readonly Logger _logger = LibLog.GetLogger<AkenioClientBase>();
 
 		protected AkenioClientBase(Uri apiEndPoint, IAuthenticationClient authClient)
 		{
@@ -87,6 +88,7 @@ namespace Akeneo.Client
 
 		private async Task<HttpResponseMessage> ExecuteAuthenticatedAsync(Func<HttpClient, HttpCallContext, Task<HttpResponseMessage>> func, HttpCallContext context)
 		{
+			_logger.Info($"hitting {context.RequestUrl}");
 			if (HttpClient.DefaultRequestHeaders.Authorization == null)
 			{
 				await AddAuthHeaderAsync(context.CancellationToken);

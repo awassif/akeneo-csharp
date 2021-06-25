@@ -1,21 +1,21 @@
 ﻿namespace Akeneo.Search
 {
-	public class Status : Criteria
+	public class StatusCriteria : Criteria
 	{
 		public const string Key = "enabled";
 
-		public static Status Enabled()
+		public static StatusCriteria Enabled()
 		{
-			return new Status
+			return new StatusCriteria
 			{
 				Operator = Operators.Equal,
 				Value = true
 			};
 		}
 
-		public static Status Disabled()
+		public static StatusCriteria Disabled()
 		{
-			return new Status
+			return new StatusCriteria
 			{
 				Operator = Operators.Equal,
 				Value = false

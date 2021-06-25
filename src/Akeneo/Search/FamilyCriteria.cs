@@ -2,39 +2,39 @@
 
 namespace Akeneo.Search
 {
-	public class Family : Criteria
+	public class FamilyCriteria : Criteria
 	{
 		public const string Key = "family";
 
-		public static Family In(params string[] group)
+		public static FamilyCriteria In(params string[] group)
 		{
-			return new Family
+			return new FamilyCriteria
 			{
 				Operator = Operators.In,
 				Value = group.ToList()
 			};
 		}
 
-		public static Family NotIn(params string[] group)
+		public static FamilyCriteria NotIn(params string[] group)
 		{
-			return new Family
+			return new FamilyCriteria
 			{
 				Operator = Operators.NotIn,
 				Value = group.ToList()
 			};
 		}
 
-		public static Family Empty()
+		public static FamilyCriteria Empty()
 		{
-			return new Family
+			return new FamilyCriteria
 			{
 				Operator = Operators.Equal,
 			};
 		}
 
-		public static Family NotEmpty()
+		public static FamilyCriteria NotEmpty()
 		{
-			return new Family
+			return new FamilyCriteria
 			{
 				Operator = Operators.Equal,
 			};

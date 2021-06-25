@@ -7,6 +7,7 @@ using Akeneo.Client;
 using Akeneo.Common;
 using Akeneo.Http;
 using Akeneo.Logging;
+using NLog;
 
 namespace Akeneo.Authentication
 {
@@ -24,7 +25,7 @@ namespace Akeneo.Authentication
 		private readonly HttpClient _httpClient;
 		private AccessTokenResponse _latestAccessToken;
 		private const string BasicAuthHeader = "Basic";
-		private readonly ILog _logger = LogProvider.For<AuthenticationClient>();
+		private readonly Logger _logger = LibLog.GetLogger<AuthenticationClient>();
 
 		public AuthenticationClient(Uri apiEndPoint, string clientId, string clientSecret, string username, string password)
 		{

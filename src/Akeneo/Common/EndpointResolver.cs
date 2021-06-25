@@ -15,6 +15,8 @@ namespace Akeneo.Common
 		private static readonly Type Product = typeof(Product);
 		private static readonly Type MediaFile = typeof(MediaFile);
 		private static readonly Type Locale = typeof(Locale);
+		private static readonly Type Channel = typeof(Channel);
+		// private static readonly Type ReferenceEntity = typeof(ReferenceEntity);
 
 		private readonly ConcurrentDictionary<Type, string> _typeToEndpointCache;
 
@@ -59,6 +61,16 @@ namespace Akeneo.Common
 			{
 				return $"{baseUri}/{category.Code}";
 			}
+		/*	var referenceEntiity= existing as ReferenceEntity;
+			if (referenceEntiity != null)
+			{
+				return $"{baseUri}/{referenceEntiity.Code}";
+			}
+			var attributeRecord= existing as AttributeRecord;
+			if (referenceEntity != null)
+			{
+				return $"{baseUri}/{referenceEntity.Code}/records";
+		*/	}
 			return null;
 		}
 
@@ -116,6 +128,14 @@ namespace Akeneo.Common
 				{
 					return Endpoints.Locale;
 				}
+				if (Channel.GetTypeInfo().IsAssignableFrom(type))
+				{
+					return Endpoints.Channels;
+				}
+		/*		if (ReferenceEntity.GetTypeInfo().IsAssignableFrom(type))
+				{
+					return Endpoints.ReferenceEntity;
+		*/		}
 				throw new NotSupportedException($"Unable to find API endpoint for type {modelType.FullName}");
 			});
 		}
