@@ -29,6 +29,42 @@ namespace Akeneo
 		Task<TModel> GetAsync<TModel>(string parentCode, string code, CancellationToken ct = default(CancellationToken)) where TModel : ModelBase;
 
 		/// <summary>
+		/// /api/rest/v1/reference-entities
+		/// </summary>
+		/// <param name="page">Page (default 1)</param>
+		/// <param name="limit">Number of results per page (default 10, max 100)</param>
+		/// <param name="withCount"> Return the count of products in the response. Be carefull with that, on a big catalog, it can decrease performance in a significative way</param>
+		/// <param name="ct">Cancellation Token</param>
+		/// <returns>Akeneo response</returns>
+		Task<PaginationResult<ReferenceEntity>> GetReferenceEntitiesAsync(int page = 1, int limit = 10, bool withCount = false, CancellationToken ct = default(CancellationToken));
+
+		/// <summary>
+		/// /api/rest/v1/reference-entities/{reference_entity_code}
+		/// </summary>
+		/// <param name="code">Resource code</param>
+		/// <param name="ct">Cancellation Token</param>
+		/// <returns>Akeneo response</returns>
+		Task<ReferenceEntity> GetReferenceEntityAsync(string code, CancellationToken ct = default(CancellationToken));
+
+		/// <summary>
+		/// /api/rest/v1/reference-entities/{reference_entity_code}/records
+		/// </summary>
+		/// <param name="page">Page (default 1)</param>
+		/// <param name="limit">Number of results per page (default 10, max 100)</param>
+		/// <param name="withCount"> Return the count of products in the response. Be carefull with that, on a big catalog, it can decrease performance in a significative way</param>
+		/// <param name="ct">Cancellation Token</param>
+		/// <returns>Akeneo response</returns>
+		Task<PaginationResult<ReferenceEntityRecord>> GetReferenceEntityRecordsAsync(string code, int page = 1, int limit = 10, bool withCount = false, CancellationToken ct = default(CancellationToken));
+
+		/// <summary>
+		/// /api/rest/v1/reference-entities/{reference_entity_code}/records/{record_code}
+		/// </summary>
+		/// <param name="code">Resource code</param>
+		/// <param name="ct">Cancellation Token</param>
+		/// <returns>Akeneo response</returns>
+		Task<ReferenceEntityRecord> GetReferenceEntityRecordAsync(string code, CancellationToken ct = default(CancellationToken));
+
+		/// <summary>
 		/// Get multiple resources.
 		/// </summary>
 		/// <typeparam name="TModel">Resource type</typeparam>

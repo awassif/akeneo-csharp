@@ -183,5 +183,25 @@ namespace Akeneo
 				Stream = await response.Content.ReadAsStreamAsync()
 			};
 		}
-	}
+
+        public Task<PaginationResult<ReferenceEntity>> GetReferenceEntitiesAsync(int page = 1, int limit = 10, bool withCount = false, CancellationToken ct = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ReferenceEntity> GetReferenceEntityAsync(string code, CancellationToken ct = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PaginationResult<ReferenceEntityRecord>> GetReferenceEntityRecordsAsync(string code, int page = 1, int limit = 10, bool withCount = false, CancellationToken ct = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ReferenceEntityRecord> GetReferenceEntityRecordAsync(string code, CancellationToken ct = default)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

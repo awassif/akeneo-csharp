@@ -11,6 +11,6 @@
 		public const string MediaFiles = "api/rest/v1/media-files";
 		public const string Locale = "api/rest/v1/locales";
 		public const string Channels = "api/rest/v1/channels";
-		// public const string ReferenceEntity = "api/rest/v1/reference-entities";
-	}
+        public const string ReferenceEntity = "api/rest/v1/reference-entities";
+    }
 }
