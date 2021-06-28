@@ -184,24 +184,44 @@ namespace Akeneo
 			};
 		}
 
-        public Task<PaginationResult<ReferenceEntity>> GetReferenceEntitiesAsync(int page = 1, int limit = 10, bool withCount = false, CancellationToken ct = default)
+        public async Task<PaginationResult<ReferenceEntity>> GetReferenceEntitiesAsync(int page = 1, int limit = 10, bool withCount = false, CancellationToken ct = default)
         {
-            throw new NotImplementedException();
-        }
+			var endpoint = _endpointResolver.ForPagination<ReferenceEntity>(page, limit, withCount);
+			_logger.Debug($"Getting multiple resource 'ReferenceEntity' from URL '{endpoint}'.");
+			var response = await GetAsync(endpoint, ct);
+			return response.IsSuccessStatusCode
+				? await response.Content.ReadAsJsonAsync<PaginationResult<ReferenceEntity>>()
+				: PaginationResult<ReferenceEntity>.Empty;
+		}
 
-        public Task<ReferenceEntity> GetReferenceEntityAsync(string code, CancellationToken ct = default)
+        public async Task<ReferenceEntity> GetReferenceEntityAsync(string code, CancellationToken ct = default)
         {
-            throw new NotImplementedException();
-        }
+			var endpoint = _endpointResolver.ForResource<ReferenceEntity>(code);
+			_logger.Debug($"Getting resource 'ReferenceEntity' from URL '{endpoint}'.");
+			var response = await GetAsync(endpoint, ct);
+			return response.IsSuccessStatusCode
+				? await response.Content.ReadAsJsonAsync<ReferenceEntity>()
+				: default(ReferenceEntity);
+		}
 
-        public Task<PaginationResult<ReferenceEntityRecord>> GetReferenceEntityRecordsAsync(string code, int page = 1, int limit = 10, bool withCount = false, CancellationToken ct = default)
+        public async Task<PaginationResult<ReferenceEntityRecord>> GetReferenceEntityRecordsAsync(string code, int page = 1, int limit = 10, bool withCount = false, CancellationToken ct = default(CancellationToken))
         {
-            throw new NotImplementedException();
-        }
+			var endpoint = $"{_endpointResolver.ForResource<ReferenceEntity>(code)}/records";
+			_logger.Debug($"Getting multiple resource 'ReferenceEntityRecord' from URL '{endpoint}'.");
+			var response = await GetAsync(endpoint, ct);
+			return response.IsSuccessStatusCode
+				? await response.Content.ReadAsJsonAsync<PaginationResult<ReferenceEntityRecord>>()
+				: PaginationResult<ReferenceEntityRecord>.Empty;
+		}
 
-        public Task<ReferenceEntityRecord> GetReferenceEntityRecordAsync(string code, CancellationToken ct = default)
+        public async Task<ReferenceEntityRecord> GetReferenceEntityRecordAsync(string code, string recordCode, CancellationToken ct = default(CancellationToken))
         {
-            throw new NotImplementedException();
+			var endpoint = $"{_endpointResolver.ForResource<ReferenceEntity>(code)}/records/{recordCode}";
+			_logger.Debug($"Getting resource 'ReferenceEntityRecord' from URL '{endpoint}'.");
+			var response = await GetAsync(endpoint, ct);
+			return response.IsSuccessStatusCode
+				? await response.Content.ReadAsJsonAsync<ReferenceEntityRecord>()
+				: default(ReferenceEntityRecord);
         }
     }
 }

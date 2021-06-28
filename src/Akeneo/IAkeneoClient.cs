@@ -62,7 +62,7 @@ namespace Akeneo
 		/// <param name="code">Resource code</param>
 		/// <param name="ct">Cancellation Token</param>
 		/// <returns>Akeneo response</returns>
-		Task<ReferenceEntityRecord> GetReferenceEntityRecordAsync(string code, CancellationToken ct = default(CancellationToken));
+		Task<ReferenceEntityRecord> GetReferenceEntityRecordAsync(string code, string recordCode, CancellationToken ct = default(CancellationToken));
 
 		/// <summary>
 		/// Get multiple resources.

@@ -65,12 +65,7 @@ namespace Akeneo.Common
 			if (referenceEntiity != null)
 			{
 				return $"{baseUri}/{referenceEntiity.Code}";
-			}
-            var referenceEntity = existing as ReferenceEntity;
-            if (referenceEntity != null)
-            {
-                return $"{baseUri}/{referenceEntity.Code}/records";
-            }
+			}            
             return null;
 		}
 
